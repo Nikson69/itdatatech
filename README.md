@@ -46,30 +46,28 @@
   VALUES ('Admin','$2a$10$xW69/TsFZ/EVsY0QlvSaF.zM1PAs1XlzhtxHbGWd0C2MOwiy5.Z1.'); 
     
    
-  INSERT INTO APP_USER_USER_PROFILE (user_id, user_profile_id) 
-  SELECT user.id, profile.id FROM app_user user, user_profile profile 
-  where user.ssoid='Admin' and profile.type='ADMIN'; 
+INSERT INTO APP_USER_USER_PROFILE (user_id, user_profile_id) SELECT user.id, profile.id FROM APP_USER user, USER_PROFILE profile where user.ssoid='Admin' and profile.type='ADMIN'
+
     
     
   Пользователь User с паролем User и правами юзера 
    
   INSERT INTO APP_USER(ssoid, password) 
-  VALUES ('USER','$2a$10$PnWVq0ieD1/qyFGLSH2Ga.1Ko7xEvXlbTgb9NqhXB.52rOwPiKEua'); 
+  VALUES ('User','$2a$10$PnWVq0ieD1/qyFGLSH2Ga.1Ko7xEvXlbTgb9NqhXB.52rOwPiKEua'); 
     
-   
-  INSERT INTO APP_USER_USER_PROFILE (user_id, user_profile_id) 
-  SELECT user.id, profile.id FROM app_user user, user_profile profile 
-  where user.ssoid='USER' and profile.type='USER'; 
+  INSERT INTO APP_USER_USER_PROFILE (user_id, user_profile_id) SELECT user.id, profile.id FROM APP_USER user, USER_PROFILE profile where user.ssoid='User' and profile.type='USER' 
+  
     
   Таблица авторизации 
    
-  CREATE TABLE persistent_logins ( 
-  username VARCHAR(64) NOT NULL, 
-  series VARCHAR(64) NOT NULL, 
-  token VARCHAR(64) NOT NULL, 
-  last_used TIMESTAMP NOT NULL, 
-  PRIMARY KEY (series) 
-  ); 
+CREATE TABLE `PERSISTENT_LOGINS` (
+  `username` varchar(64) NOT NULL,
+  `series` varchar(64) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`series`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
    
   Таблица данных в моем случае картинок  
    
